@@ -3,4 +3,5 @@ import Mover
 
 
 class Ficha(metaclass=abc.ABCMeta, Mover):
-    pass
+
+    def __init__(self, seleccionada ):
