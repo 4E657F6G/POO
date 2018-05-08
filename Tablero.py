@@ -19,13 +19,11 @@ def HacerTablero():
     ancho = int(dimensiones[0] / 8)
     alto = int(dimensiones[1] / 8)
     rojo = (255, 0, 0)
-    while juego_terminado is False:
-        for evento in pygame.event.get():
-            if evento.type == pygame.QUIT:
-                juego_terminado = True
-            elif evento.type == pygame.MOUSEBUTTONDOWN:
-                mousepos = pygame.mouse.get_pos()
-                pygame.draw.circle(pantalla, rojo, mousepos, 17, 0)
+
+    '''carga de imagen'''
+    imagen = pygame.image.load("img/ficha.jpg").convert()
+    posimg = [38, 100]
+    def tablero():
         pantalla.fill(BLANCO)
         color = 0
         for i in range(0, dimensiones[0], ancho):
@@ -36,13 +34,26 @@ def HacerTablero():
                     pygame.draw.rect(pantalla, BLANCO, [i, j, ancho, alto], 0)
                 color += 1
             color += 1
+
+    def fichitas():
         pos = [38, 38]
         for i in range(4):
             pygame.draw.circle(pantalla, rojo, pos, 27, 0)
             pos[0] = pos[0] + 150
-        pygame.display.flip()
-        reloj.tick(5)
 
+    while juego_terminado is False:
+        tablero()
+        pantalla.blit(imagen, posimg)
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                juego_terminado = True
+            elif evento.type == pygame.MOUSEBUTTONDOWN:
+                reloj.tick(10)
+                pantalla.blit(imagen, posimg)
+                posimg = pygame.mouse.get_pos()
+        fichitas()
+        #reloj.tick(10)
+        pygame.display.flip()
     pygame.quit()
 
 
