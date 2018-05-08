@@ -1,12 +1,14 @@
 import abc
-import Checker
+import pygame
+import Tablero
 
 
-class Ficha(metaclass=abc.ABCMeta, Checker):
-    def __init__(self, ficha, color, tipoficha):
-        self.ficha = ficha
+class Ficha(metaclass=abc.ABCMeta, Tablero):
+
+    def __init__(self, color, tipoficha, img):
         self.color = color
         self.tipoficha = tipoficha
+        self.img = img
 
     @abc.abstractmethod
     def setcolor(self, color):
@@ -16,5 +18,10 @@ class Ficha(metaclass=abc.ABCMeta, Checker):
     def comer(self, color):
         pass
 
-    def moverficha(self, ficha):
-        pass
+    @abc.abstractmethod
+    def cargarimg(self, imagen):
+        self.img = pygame.image.load(imagen).convert()
+
+    @abc.abstractmethod
+    def blitimg(self, imagen, posimg):
+    
