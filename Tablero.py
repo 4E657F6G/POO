@@ -1,4 +1,5 @@
 import pygame
+import Negra
 
 
 class Tablero():
@@ -9,18 +10,17 @@ class Tablero():
     SELECCIONA = (220, 200, 0)
     DIMENCIONES = (600, 600)
     LETRAS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+    screen = pygame.display.set_mode(DIMENCIONES)
+    imgfn = None
 
     def jugar(self):
         pygame.init()
-        screen = pygame.display.set_mode(self.DIMENCIONES)
         pygame.display.set_caption("__Tablero__")
         game_over = False
         clock = pygame.time.Clock()
         tamanio_fuente = 30
         seleccion = ['Z', -1]
-
-        def pantalla():
-            return screen
+        #img = pygame.image.load("img/doge.png").convert_alpha()
 
         def dibujartablero(screen, dimension, p_inicio, seleccion):
             color = 0
@@ -58,6 +58,15 @@ class Tablero():
                         actual = [self.LETRAS[i], j + 1]
             return actual
 
+        def cargarfichas():
+            pos = [33, 33]
+            fichanegra = Negra.Negra("img/doge.png", pos)
+            fichanegra.cargarimg()
+            for i in range(4):
+                fichanegra.blitimg()
+                pos[0] = + 168
+            pygame.display.flip()
+
         while game_over is False:
             for evento in pygame.event.get():
                 if evento.type == pygame.QUIT:
@@ -66,15 +75,15 @@ class Tablero():
             if botones[0]:
                 pos = pygame.mouse.get_pos()
                 seleccion = obtenerposicion(pos, dimension, puntoInicio, seleccion)
-                print(seleccion)
-            screen.fill(self.FONDO)
-            dibujartablero(screen, dimension, puntoInicio, seleccion)
-            pygame.display.flip()
+                #print(seleccion)
+            global screen
+            self.screen.fill(self.FONDO)
+            dibujartablero(self.screen, dimension, puntoInicio, seleccion)
+            cargarfichas()
             clock.tick(60)
-
         pygame.quit()
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     tablero = Tablero()
     tablero.jugar()
