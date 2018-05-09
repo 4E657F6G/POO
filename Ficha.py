@@ -28,7 +28,9 @@ class Ficha(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def cargarimg(self, imagen):
         Tablero.Tablero.imgfn = pygame.image.load(imagen).convert_alpha()
+        #print("todo bien")
 
     @abc.abstractmethod
-    def blitimg(self):
-        Tablero.Tablero.screen.blit(Tablero.Tablero.imgfn, self.pos)
+    def blitimg(self, posicion):
+        Tablero.Tablero.screen.blit(Tablero.Tablero.imgfn, posicion)
+        #print("todo bien")
