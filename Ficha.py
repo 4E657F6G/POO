@@ -3,13 +3,14 @@ import pygame
 import Tablero
 
 
-class Ficha(metaclass=abc.ABCMeta, Tablero.Tablero):
-    def __init__(self, color, tipoficha, img):
-        self.color = color
-        self.tipoficha = tipoficha
+class Ficha(metaclass=abc.ABCMeta):
+    def __init__(self, img, pos): # tipoficha
+        # self.color = color
+        # self.tipoficha = tipoficha
         self.img = img
+        self.pos = pos
 
-    @abc.abstractmethod
+    ''''@abc.abstractmethod
     def settipoficha(self, tipo):
         self.tipoficha = tipo
 
@@ -22,12 +23,12 @@ class Ficha(metaclass=abc.ABCMeta, Tablero.Tablero):
 
     @abc.abstractmethod
     def comer(self, color):
-        pass
+        pass'''
 
     @abc.abstractmethod
     def cargarimg(self, imagen):
-        self.img = pygame.image.load(imagen).convert()
+        Tablero.Tablero.imgfn = pygame.image.load(imagen).convert_alpha()
 
     @abc.abstractmethod
-    def blitimg(self, imagen, posimg):
-        Tablero.Tablero.pantalla.blit(imagen, posimg)
+    def blitimg(self):
+        Tablero.Tablero.screen.blit(Tablero.Tablero.imgfn, self.pos)
