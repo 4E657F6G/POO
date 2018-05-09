@@ -9,4 +9,4 @@ class Negra(Ficha.Ficha):
         super().cargarimg(self.img)
 
     def blitimg(self):
-        super().blitimg(self.img, self.pos)
+        super().blitimg(self.pos)
