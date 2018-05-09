@@ -62,7 +62,7 @@ class Tablero():
             pos = [33, 33]
             fichanegra = Negra.Negra("img/doge.png", pos)
             fichanegra.cargarimg()
-            for i in range(4):
+            for i in range(8):
                 fichanegra.blitimg()
                 pos[0] = + 168
             pygame.display.flip()
