@@ -2,13 +2,13 @@ import Ficha
 
 
 class Blanca(Ficha):
-    def __init__(self, imagen, color, posimg):
-        self.imagen = imagen
-        self.color = color
-        self.posimg = posimg
+    def __init__(self, img, pos):
+        self.img = img
+        self.pos = pos
 
-    def cargarimg(self, imagen):
-        super().cargarimg(imagen)
+    def cargarimg(self):
+        super().cargarimg(self.img)
 
-    def blitimg(self, imagen, posimg):
-        super().blitimg(imagen, posimg)
+    def blitimg(self):
+        super().blitimg(self.pos)
+ 
