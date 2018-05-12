@@ -1,5 +1,7 @@
 import pygame
-import Negra
+# import Negra
+# import Blanca
+import Checker
 
 
 class Tablero():
@@ -20,7 +22,7 @@ class Tablero():
         clock = pygame.time.Clock()
         tamanio_fuente = 30
         seleccion = ['Z', -1]
-        #img = pygame.image.load("img/doge.png").convert_alpha()
+        img = pygame.image.load("img/grumpy.png").convert_alpha()
 
         def dibujartablero(screen, dimension, p_inicio, seleccion):
             color = 0
@@ -59,28 +61,42 @@ class Tablero():
             return actual
 
         def cargarfichas():
-            pos = [33, 33]
-            fichanegra = Negra.Negra("img/doge.png", pos)
-            fichanegra.cargarimg()
-            for i in range(8):
-                fichanegra.blitimg()
-                pos[0] = + 168
-            pygame.display.flip()
+            for lista in Checker.posiciones:
+                print(lista)
 
+            '''fichanegra = Negra.Negra("img/doge.png", pos)
+            fichanegra.cargarimg()
+            fichanegra.blitimg()
+            self.screen.blit(img, pos2)
+            self.screen.blit(img, [100, 502])
+            self.screen.blit(img, [234, 502])
+            self.screen.blit(img, [368, 502])
+            self.screen.blit(img, [502, 502])'''
+
+        pos2 = [100, 100]
         while game_over is False:
+            '''botones = pygame.mouse.get_pressed()
+            if botones[0]:
+                pos = pygame.mouse.get_pos()
+                seleccion = obtenerposicion(pos, dimension, puntoInicio, seleccion)'''
+            self.screen.fill(self.FONDO)
+            dibujartablero(self.screen, dimension, puntoInicio, seleccion)
+
+            cargarfichas()
             for evento in pygame.event.get():
                 if evento.type == pygame.QUIT:
                     game_over = True
-            botones = pygame.mouse.get_pressed()
-            if botones[0]:
-                pos = pygame.mouse.get_pos()
-                seleccion = obtenerposicion(pos, dimension, puntoInicio, seleccion)
-                #print(seleccion)
-            global screen
-            self.screen.fill(self.FONDO)
-            dibujartablero(self.screen, dimension, puntoInicio, seleccion)
-            cargarfichas()
+                elif evento.type == pygame.MOUSEBUTTONDOWN:
+                    botones = pygame.mouse.get_pressed()
+                    if botones[0]:
+                        pos = pygame.mouse.get_pos()
+                        seleccion = obtenerposicion(pos, dimension, puntoInicio, seleccion)
+                    if seleccion == ['B', 2]:
+                        self.screen.blit(img, pos2)
+                        print("se movió a: ", pos2)
+                    pos2 = pygame.mouse.get_pos()
             clock.tick(60)
+            pygame.display.flip()
         pygame.quit()
 
 

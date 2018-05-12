@@ -11,4 +11,3 @@ class Blanca(Ficha):
 
     def blitimg(self):
         super().blitimg(self.pos)
- 

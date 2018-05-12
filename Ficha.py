@@ -4,11 +4,6 @@ import Tablero
 
 
 class Ficha(metaclass=abc.ABCMeta):
-    def __init__(self, img, pos): # tipoficha
-        # self.color = color
-        # self.tipoficha = tipoficha
-        self.img = img
-        self.pos = pos
 
     ''''@abc.abstractmethod
     def settipoficha(self, tipo):
@@ -22,15 +17,16 @@ class Ficha(metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
-    def comer(self, color):
-        pass'''
+    def mover(self, posicion):
+        pass '''
 
     @abc.abstractmethod
     def cargarimg(self, imagen):
         Tablero.Tablero.imgfn = pygame.image.load(imagen).convert_alpha()
-        #print("todo bien")
+        # print("todo bien")
 
     @abc.abstractmethod
     def blitimg(self, posicion):
         Tablero.Tablero.screen.blit(Tablero.Tablero.imgfn, posicion)
-        #print("todo bien")
+
+        # print("todo bien")
